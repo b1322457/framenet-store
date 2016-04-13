@@ -13,7 +13,7 @@ Frame* FrameBuilder::build_frame(std::string xml_path){
     std::vector<std::string>children;
 
     //read the frame.xml and analysis
-    rapidxml::file<> fdoc(xml_path);
+    rapidxml::file<> fdoc(xml_path.c_str());
     rapidxml::xml_document<> doc;
     doc.parse<0>(fdoc.data());
     rapidxml::xml_node<>* root = doc.first_node();

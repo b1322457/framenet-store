@@ -13,3 +13,4 @@ if(Boost_FOUND)
     target_link_libraries(framenet_en ${Boost_LIBRARIES})
 endif()
 
+add_executable(rapidtest main.cpp)

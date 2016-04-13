@@ -24,7 +24,7 @@ FrameNet FrameNetBuilder::read(){
 
 void FrameNetBuilder::read_relations(FrameNet &fn){
 
-    rapidxml::file<> fdoc(this->relation_file_path);
+    rapidxml::file<> fdoc(this->relation_file_path.c_str());
     rapidxml::xml_document<> doc;
     doc.parse<0>(fdoc.data());
 
@@ -56,7 +56,7 @@ std::vector<std::string> FrameNetBuilder::listdir(std::string path){
     std::vector<std::string> listnames;
     DIR           *d;
     struct dirent *dir;
-    d = opendir(frames_path);
+    d = opendir(frames_path.c_str());
     if(d)
     {
         while ((dir = readdir(d)) != NULL)
@@ -99,7 +99,7 @@ void FrameNetBuilder::fill_annotations(LexicalUnit *lu){
 }
 
 LexicalUnit*  FrameNetBuilder::parse_lu_xml(std::string xml_path,LexicalUnit* original){
-    rapidxml::file<> fdoc(this->relation_file_path);
+    rapidxml::file<> fdoc(this->relation_file_path.c_str());
     rapidxml::xml_document<> doc;
     doc.parse<0>(fdoc.data());
 
