@@ -49,6 +49,12 @@ public:
         }
     }
 
+    std::vector<Frame*> get_frames_from_lu(std::string lu_name){
+        if(lexemes_to_frames.find(lu_name)!=lexemes_to_frames.end()){
+            return lexemes_to_frames[lu_name];
+        }
+    }
+
 
 private:
     std::map<std::string,Frame*> name_to_frames;

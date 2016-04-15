@@ -21,17 +21,17 @@ Frame* FrameBuilder::build_frame(std::string xml_path){
     int ID = atoi(root->first_attribute("ID")->value());
 
     //build FE
-    for(auto node = root->first_node("FE");node!= nullptr;node = node->next_sibling()){
+    for(auto node = root->first_node("FE");node!= nullptr;node = node->next_sibling("FE")){
         elements.push_back(build_FE(node,name));
     }
 
     //build LU
-    for(auto node = root->first_node("lexUnit");node!= nullptr;node = node->next_sibling()){
+    for(auto node = root->first_node("lexUnit");node!= nullptr;node = node->next_sibling("lexUnit")){
         lexemes.push_back(build_LU(node,name));
     }
 
     //build frameRelation
-    for(auto node = root->first_node("frameRelation");node!= nullptr;node = node->next_sibling()){
+    for(auto node = root->first_node("frameRelation");node!= nullptr;node = node->next_sibling("frameRelation")){
         relations.push_back(build_FR(node,parents,children));
     }
 
@@ -69,13 +69,13 @@ FrameElement* FrameBuilder::build_FE(rapidxml::xml_node<>*node,std::string frame
     }
 
     //set excludesFEs
-    for(auto p=node->first_node("excludesFEs");p!= nullptr;p = p->next_sibling()){
+    for(auto p=node->first_node("excludesFE");p!= nullptr;p = p->next_sibling("excludesFEs")){
         std::string name = p->first_attribute("name")->value();
         element->add_excludes(name);
     }
 
     //set requiresFEs
-    for(auto p=node->first_node("requiresFEs");p!= nullptr;p = p->next_sibling()){
+    for(auto p=node->first_node("requiresFE");p!= nullptr;p = p->next_sibling("requiresFEs")){
         std::string name = p->first_attribute("name")->value();
         element->add_requires(name);
     }
@@ -103,7 +103,7 @@ LexicalUnit* FrameBuilder::build_LU(rapidxml::xml_node<>*node,std::string frame_
 FrameRelation* FrameBuilder::build_FR(rapidxml::xml_node<>*node,std::vector<std::string>&parents,std::vector<std::string>&children){
     std::string relation_type = node->first_attribute("type")->value();
     std::vector<std::string> related_frames;
-    for(auto child = node->first_node("relatedFrame");child!= nullptr;child = child->next_sibling()){
+    for(auto child = node->first_node("relatedFrame");child!= nullptr;child = child->next_sibling("relatedFrame")){
         std::string r_frame_name = child->value();
         related_frames.push_back(r_frame_name);
         if(relation_type=="Inherits from"){

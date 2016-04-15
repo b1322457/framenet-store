@@ -36,4 +36,12 @@ public:
     int get_ID(){
         return this->ID;
     }
+
+    std::string get_sentence(){
+        return sentence;
+    }
+
+    std::vector<Label> get_labels(){
+        return labels;
+    }
 };

@@ -53,6 +53,18 @@ public:
         this->requires.push_back(fe_name);
     }
 
+    std::vector<std::string> get_excludes(){
+        return this->excludes;
+    }
+
+    std::vector<std::string> get_requires(){
+        return this->requires;
+    }
+
+    std::string get_name(){
+        return  this->name;
+    }
+
 
 };
 
@@ -77,10 +89,9 @@ public:
 
 
 class Node{
-private:
+public:
     std::vector<std::string> parents;
     std::vector<std::string> children;
-public:
     Node(const std::vector<std::string> &parents,const std::vector<std::string> &children){
         this->parents = parents;
         this->children = children;
@@ -127,6 +138,37 @@ public:
 
      int get_ID() const{
         return  ID;
+    }
+
+    std::vector<std::string> get_parents(){
+        return this->parents;
+    }
+
+    std::vector<std::string> get_children(){
+        return this->children;
+    }
+
+    std::vector<FERealization*> get_fe_realizations(){
+        return this->fe_realizations;
+    }
+
+    std::vector<FrameRelation*> get_relations(){
+        return this->relations;
+    }
+
+    FrameElement* get_element(std::string name){
+        for(auto element:elements){
+            if(element->get_name()==name){
+                return element;
+            }
+        }
+    }
+
+    LexicalUnit* get_lu(std::string name){
+        for(auto lu:lexicalUnits){
+            if(lu->get_name()==name)
+                return lu;
+        }
     }
 
      void add_fe_realizations(std::vector<FERealization*> fer_vec){

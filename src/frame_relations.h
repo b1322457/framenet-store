@@ -11,10 +11,9 @@
 #include <vector>
 
 class FrameRelation{
-private:
+public:
 std::string relation_type;
 std::vector<std::string> related_frames;
-public:
 FrameRelation(std::string relation,std::vector<std::string> &related){
      this->relation_type = relation;
      this->related_frames = related;
