@@ -16,6 +16,9 @@ public:
     int end;
     std::string fe_name;
     int fe_ID;
+    bool operator >(const Label& other)const{
+        return this->start>other.start;
+    }
 };
 
 

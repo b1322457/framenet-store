@@ -11,16 +11,20 @@ int main(){
 
     FrameNetBuilder fnb = FrameNetBuilder(frame_path,relation_path,lu_path);
     FrameNet fn = fnb.read();
-    fnb.build_lus_for_frame("Motion", fn);
-    auto frame = fn.get_frame("Motion");
+    fnb.build_lus_for_frame("Arrest", fn);
+    auto frame = fn.get_frame("Arrest");
 
     auto relations = frame->get_relations();
 
-    for(auto relation:relations){
-        std::cout<<relation->relation_type<<std::endl;
-        std::cout<<relation->related_frames.size()<<std::endl;
-    }
-    auto lu = frame->get_lu("coast.v");
+    auto lu = frame->get_lu("arrest.v");
+
+  /*  auto res = lu->get_sub_sentence();
+
+    for(auto it=res.begin();it!=res.end();it++){
+        std::cout<<it->first<<std::endl;
+    }*/
+
+    return 0;
 
 
 }

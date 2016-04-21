@@ -175,7 +175,7 @@ Annotation* FrameNetBuilder::build_annotation(rapidxml::xml_node<>* senten){
                     for(auto label = layer->first_node("label");label != nullptr;label = label->next_sibling("label")){
                         int start = std::stoi(label->first_attribute("start")->value());
                         int end = std::stoi(label->first_attribute("end")->value());
-                        std::string fe_name = "Target";
+                        std::string fe_name =text.substr(start,end-start+1);
                         int fe_ID = -1;
                         labels.push_back({start,end,fe_name,fe_ID});
                     }
